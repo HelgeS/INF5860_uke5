@@ -2,18 +2,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def neural_net_from_parameters(x, Ws, bs=None):
-  if bs is None:
-    bs = [np.zeros((w.shape[0],)) for w in Ws]
-  in_x = x
-  out = 0
-  for w, b in zip(Ws, bs):
-    out = w.dot(in_x) + b
-    in_x = np.maximum(0, out)
-  return out
 
 
 def greyscale_shift(x):
+
   """
   Return values for x that is invariant to changes in greyscale. X may be 1D or 2D of any (reasonably small size)
   """
@@ -73,9 +65,29 @@ def multiply_network_relu(x):
   """
   W1 = np.zeros((40, 2))
   b1 = np.zeros((40))
+  W2 = np.zeros((40, 40))
   b2 = np.zeros((40))
-  W2 = np.zeros((40, 2))
   W3 = np.zeros((1, 40))
   b3 = np.zeros((1))
   return neural_net_from_parameters(x, [W1, W2, W3], [b1, b2, b3])
 
+
+def neural_net_from_parameters(x, Ws, bs=None):
+  """
+  OBS: Do not change this file
+  Calculate a neural network on the form:
+  W3 max(0, W2 max(0, W1 x + b1) + b2) + b3
+  :param x: the input vector to the neural network
+  :param Ws: a list of weight-metrices for each layer
+  :param bs: a list of bias vectors for each layer
+  :return: the output of the neural network
+  """
+
+  if bs is None:
+    bs = [np.zeros((w.shape[0],)) for w in Ws]
+  in_x = x
+  out = 0
+  for w, b in zip(Ws, bs):
+    out = w.dot(in_x) + b
+    in_x = np.maximum(0, out)
+  return out

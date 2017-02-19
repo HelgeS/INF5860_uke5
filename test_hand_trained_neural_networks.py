@@ -51,3 +51,11 @@ def test_multiply_network_relu():
     x = np.random.random((2,))*10
     x1 = multiply_network_relu(x)
     assert np.abs(np.prod(x) - x1) < 1e-12
+
+
+if __name__ == '__main__':
+  test_grayscale_shift()
+  test_abs_function_network()
+  test_translation_shift_1_step_size2()
+  test_multiply_network()
+  test_multiply_network_relu()

@@ -15,3 +15,7 @@ def test_distorted_cifar():
   validation_score = cross_val_score(clf, images.reshape((images.shape[0], -1)), labels, cv=10).mean()
   print('validation_score', validation_score)
   assert validation_score > 0.27
+
+
+if __name__ == '__main__':
+    test_distorted_cifar()
