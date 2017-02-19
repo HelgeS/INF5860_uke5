@@ -8,12 +8,12 @@ def greyscale_shift(x):
 
   """
   Return values for x that is invariant to changes in greyscale. X may be 1D or 2D of any (reasonably small size)
+
+  You may need to change the number of weight-matrices sendt to neural_net_from_parameters.
   """
-  eye = np.eye(x.shape[0])
-  W = -eye
-  W[:, 1:] += eye[:, :-1]
-  W[-1, 0] = 1
-  return neural_net_from_parameters(x, [W])
+
+  W1 = np.eye(x.shape[0])
+  return neural_net_from_parameters(x, [W1])
 
 
 def translation_shift_1_step_size2(x):
@@ -21,24 +21,22 @@ def translation_shift_1_step_size2(x):
   In this exercise x will always be a vector of size 2 (2,).
   Return values that will give the same results if the two values in x is swapped,
   but a different value if a value is added to both values.
+
+  You may need to change the number of weight-matrices sendt to neural_net_from_parameters.
   """
-  W1 = np.array([[1, -1], [0, 1]])
-  W2 = np.array([[1, 1], [1, 1]])
-  return neural_net_from_parameters(x, [W1, W2])
+  W1 = np.eye(2)
+  return neural_net_from_parameters(x, [W1])
 
 
 def abs_function_network(x):
   """
   Build a network that return the same result as an absolutt-value function.
   Unchanged if positive and fliped sign if negative.
-  """
-  N = x.shape[0]
-  W1 = np.zeros((N * 2, N))
-  W1[::2] = np.eye(N)
-  W1[1::2] = -W1[::2]
-  W2 = np.abs(W1).T
 
-  return neural_net_from_parameters(x, [W1, W2])
+  You may need to change the number of weight-matrices sendt to neural_net_from_parameters.
+  """
+  W1 = np.eye(x.shape[0])
+  return neural_net_from_parameters(x, [W1])
 
 
 def multiply_network(x):
@@ -47,9 +45,11 @@ def multiply_network(x):
   Build the weights for a network that return the product of the two numbers.
   In this exercise we use a "non-linearity" (function between the matrix multiplication),
   that each number. See ( ... )**2
+
+  You may need to change the number of weight-matrices sendt to neural_net_from_parameters.
   """
-  W1 = np.array([[1, 1], [1, 0], [0, 1]])
-  W2 = np.array([[0.5, -0.5, -0.5]])
+  W1 = np.eye(2)
+  W2 = np.zeros((1, 2))
   return W2.dot( W1.dot(x)**2 )
 
 
@@ -62,6 +62,8 @@ def multiply_network_relu(x):
   To make it easy you can expect that the incoming values are integers between 0 and 11 (0<=x<11)
   PROTIP: Use bias b as well as W
   OBS: no solution on github...
+
+  You may need to change the number of weight-matrices sendt to neural_net_from_parameters.
   """
   W1 = np.zeros((40, 2))
   b1 = np.zeros((40))
