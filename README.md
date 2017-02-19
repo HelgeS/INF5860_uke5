@@ -9,6 +9,10 @@ In hand_trained_neural_networks your are not supposed to alter the function *neu
 In **hand_trained_neural_networks.py** you may need to change the number of weight-matrices sendt to the function
 neural_net_from_parameters.
 
+Download the code with:
+
+    git clone https://github.com/sigmunjr/INF5860_uke5.git
+
 To check if a solution is correct you can run (may take some time)
 
     nosetests
