@@ -1,5 +1,4 @@
-# INF5860_uke5_solutions
-
+# INF5860_uke5
 In this exercies you will try to build some very specific neural networks "by hand" and try some normalization.
 I hope it will build some intuition on how neural networks and "Non-linearities" work.
 
